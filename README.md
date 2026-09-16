@@ -41,4 +41,4 @@ program terdiri dari 1 class, yaitu **Film** yang terdiri dari atribut:
 <img width="734" height="184" alt="py6" src="https://github.com/user-attachments/assets/0896d1b7-06f9-4230-ba20-f3dbd37d21db" />
 
 # PHP
-![YouTube](https://shields.io)](https://youtu.be/mAAArf4WllI?si=D1bFsG53fAvjNBhI)
+[![Nonton di YouTube](https://shields.io)]([https://youtu.be/mAAArf4WllI?si=D1bFsG53fAvjNBhI)
