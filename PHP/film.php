@@ -17,8 +17,7 @@ class Film {
         $this->gambar = "";
     }
 
-    public function __destruct() {}
-
+    // Getter methods
     public function getId() { return $this->id; }
     public function getJudul() { return $this->judul; }
     public function getGenre() { return $this->genre; }
@@ -26,6 +25,7 @@ class Film {
     public function getStudio() { return $this->studio; }
     public function getGambar() { return $this->gambar; }
 
+    // Setter methods
     public function setId($nilai) { $this->id = $nilai; }
     public function setJudul($nilai) { $this->judul = $nilai; }
     public function setGenre($nilai) { $this->genre = $nilai; }

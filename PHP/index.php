@@ -1,11 +1,13 @@
 <?php
 require_once __DIR__ . '/film.php';
-session_start();
+session_start(); // start session to store film data
 
+// Initialize the film list in session if not already set
 if (!isset($_SESSION['daftarFilm'])) {
     $_SESSION['daftarFilm'] = [];
 }
 
+// Helper function to find the index of a film by its ID
 function cariIndex($id) {
     foreach ($_SESSION['daftarFilm'] as $index => $film) {
         if ($film->getId() === $id) return $index;
@@ -13,19 +15,23 @@ function cariIndex($id) {
     return -1;
 }
 
+// Helper function to escape output for HTML
 function e($teks) {
     return htmlspecialchars($teks, ENT_QUOTES, 'UTF-8');
 }
 
+// Initialize variables for messages and search results
 $pesan = '';
 $hasilCari = null;
 $dataEdit = null;
 
+// Handle form submissions
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $aksi = $_POST['aksi'] ?? '';
     $idInput = trim($_POST['id'] ?? '');
     $id = (int) $idInput;
 
+    // Validate ID input
     if ($aksi === 'tambah' || $aksi === 'update') {
         $judul = trim($_POST['judul'] ?? '');
         $genre = trim($_POST['genre'] ?? '');
@@ -33,11 +39,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $studio = trim($_POST['studio'] ?? '');
         $gambar = trim($_POST['gambar'] ?? '');
 
+        // Validate that all fields are filled
         if ($idInput === '' || $judul === '' || $genre === '' || $durasi === '' || $studio === '' || $gambar === '') {
             $pesan = 'Semua data harus diisi.';
-        } elseif ($aksi === 'tambah') {
-            if (cariIndex($id) !== -1) $pesan = 'ID sudah digunakan.';
-            else {
+        } elseif ($aksi === 'tambah') { // Add new film
+            if (cariIndex($id) !== -1) $pesan = 'ID sudah digunakan.'; // Check if ID is already used
+            else { // Create a new Film object and add it to the session
                 $film = new Film();
                 $film->setId($id);
                 $film->setJudul($judul);
@@ -48,10 +55,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['daftarFilm'][] = $film;
                 $pesan = 'Data berhasil ditambahkan.';
             }
-        } else {
+        } else { // Update existing film
             $index = cariIndex($id);
-            if ($index === -1) $pesan = 'Data tidak ditemukan.';
-            else {
+            if ($index === -1) $pesan = 'Data tidak ditemukan.'; // Check if the film exists
+            else { // Update the existing Film object in the session
                 $_SESSION['daftarFilm'][$index]->setJudul($judul);
                 $_SESSION['daftarFilm'][$index]->setGenre($genre);
                 $_SESSION['daftarFilm'][$index]->setDurasi($durasi);
@@ -60,24 +67,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $pesan = 'Data berhasil diubah.';
             }
         }
-    } elseif ($aksi === 'hapus') {
+    } elseif ($aksi === 'hapus') { // Delete film
         $index = cariIndex($id);
-        if ($index === -1) $pesan = 'Data tidak ditemukan.';
-        else {
+        if ($index === -1) $pesan = 'Data tidak ditemukan.'; // Check if the film exists
+        else { // Remove the film from the session array
             array_splice($_SESSION['daftarFilm'], $index, 1);
             $pesan = 'Data berhasil dihapus.';
         }
-    } elseif ($aksi === 'cari') {
+    } elseif ($aksi === 'cari') { // Search for film
+        $index = cariIndex($id); 
+        if ($index === -1) $pesan = 'Data tidak ditemukan.'; // Check if the film exists
+        else $hasilCari = $_SESSION['daftarFilm'][$index]; // Store the found film for display
+    } elseif ($aksi === 'ambilEdit') { // Prepare film data for editing
         $index = cariIndex($id);
-        if ($index === -1) $pesan = 'Data tidak ditemukan.';
-        else $hasilCari = $_SESSION['daftarFilm'][$index];
-    } elseif ($aksi === 'ambilEdit') {
-        $index = cariIndex($id);
-        if ($index === -1) $pesan = 'Data tidak ditemukan.';
-        else $dataEdit = $_SESSION['daftarFilm'][$index];
+        if ($index === -1) $pesan = 'Data tidak ditemukan.'; // Check if the film exists
+        else $dataEdit = $_SESSION['daftarFilm'][$index]; // Store the film data for editing
     }
 }
 ?>
+
+// Main content
 <!doctype html>
 <html lang="id">
 <head>
