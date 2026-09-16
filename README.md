@@ -2,48 +2,7 @@
 Saya Razan Raihan Malik dengan NIM 2508838 mengerjakan Tugas Praktikum 1 pada Mata Kuliah Desain dan Pemrograman Berorientasi Objek (DPBO) untuk keberkahan-Nya maka saya tidak melakukan kecurangan seperti yang telah dispesifikasikan. Aamiin
 
 # STRUKTUR FILE
-
-Main
-├── CPP
-│   ├── film.cpp
-│   └── main.cpp
-├── Dokumentasi
-│   ├── CPP
-│   │   ├── CPP1.png
-│   │   ├── CPP2.png
-│   │   ├── CPP3.png
-│   │   ├── CPP4.png
-│   │   ├── CPP5.png
-│   │   └── CPP6.png
-│   ├── Java
-│   │   ├── Java1.png
-│   │   ├── Java2.png
-│   │   ├── Java3.png
-│   │   ├── Java4.png
-│   │   ├── Java5.png
-│   │   └── Java6.png
-│   ├── PHP
-│   │   └── PHP1.mov
-│   └── Python
-│       ├── py1.png
-│       ├── py2.png
-│       ├── py3.png
-│       ├── py4.png
-│       ├── py5.png
-│       └── py6.png
-├── Java
-│   ├── Film.java
-│   └── Main.java
-├── PHP
-│   ├── film.php
-│   ├── images
-│   │   ├── DILAN_1990.jpg
-│   │   └── SPIDERMAN_BRAND_NEW_DAY.jpg
-│   └── index.php
-├── Python
-│   ├── film.py
-│   └── main.py
-└── README.md
+<img width="299" height="623" alt="Screenshot 2026-09-16 at 23 46 05" src="https://github.com/user-attachments/assets/e859562b-dd28-4400-b4ad-447f3294d5cc" />
 
 # DESAIN
 program terdiri dari 1 class, yaitu **Film** yang terdiri dari atribut:
